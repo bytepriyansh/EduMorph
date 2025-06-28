@@ -1,30 +1,88 @@
-# EduMorph UI Design
+# 🚀 EduMorph – The Shape-Shifting AI Learning Companion
 
-*Automatically synced with your [v0.dev](https://v0.dev) deployments*
+[![Deployed on Vercel](https://img.shields.io/badge/Deployed%20on-Vercel-black?style=for-the-badge&logo=vercel)](https://edu-morph.vercel.app)
+[![Built with v0.dev](https://img.shields.io/badge/Built%20with-v0.dev-black?style=for-the-badge)](https://v0.dev/chat/projects/jipnv3Kgop9)
 
-[![Deployed on Vercel](https://img.shields.io/badge/Deployed%20on-Vercel-black?style=for-the-badge&logo=vercel)](https://vercel.com/priyansh-bytes-projects/v0-edu-morph-ui-design)
-[![Built with v0](https://img.shields.io/badge/Built%20with-v0.dev-black?style=for-the-badge)](https://v0.dev/chat/projects/jipnv3Kgop9)
+EduMorph is a futuristic AI-powered education platform that redefines self-learning with creativity, clarity, and cutting-edge experiences. Designed to help students **understand deeply**, **revise smartly**, and **apply concepts in the real world**, EduMorph adapts to each learner in real-time — no past data required.
 
-## Overview
+---
 
-This repository will stay in sync with your deployed chats on [v0.dev](https://v0.dev).
-Any changes you make to your deployed app will be automatically pushed to this repository from [v0.dev](https://v0.dev).
+## 🌐 Live Demo
 
-## Deployment
+🔗 **[edu-morph.vercel.app](https://edu-morph.vercel.app)**  
+💬 Built using [v0.dev](https://v0.dev), designed to be fast, beautiful, and deeply useful.
 
-Your project is live at:
+---
 
-**[https://vercel.com/priyansh-bytes-projects/v0-edu-morph-ui-design](https://vercel.com/priyansh-bytes-projects/v0-edu-morph-ui-design)**
+## ✨ Key Features
 
-## Build your app
+### 1. 🔮 **Concept Morph**
+Enter any topic → Get 3 AI-powered explanation levels:
+- 🧠 TL;DR
+- 🎈 Explain Like I'm 5 (ELI5)
+- 🔍 Deep Dive  
+Optional: Explain as gamer/rapper/chef for fun!
 
-Continue building your app on:
+### 2. 🎯 **Quiz Zone**
+Auto-generated MCQs based on any topic:
+- Difficulty adapts in real time
+- Timer, score, and retry logic
+- Result analytics + emoji reactions
 
-**[https://v0.dev/chat/projects/jipnv3Kgop9](https://v0.dev/chat/projects/jipnv3Kgop9)**
+### 3. 💬 **Doubt Resolver**
+Ask anything — AI answers with full context:
+- Smart ChatGPT-like UI
+- Typing animation, feedback system
+- Sidebar archive of past questions
 
-## How It Works
+### 4. 🛤️ **Roadmap Creator**
+Set a goal → Get an AI-generated study path:
+- Milestones, timelines, checkboxes
+- Horizontal & vertical scroll
+- Linked resources and progress tracking
 
-1. Create and modify your project using [v0.dev](https://v0.dev)
-2. Deploy your chats from the v0 interface
-3. Changes are automatically pushed to this repository
-4. Vercel deploys the latest version from this repository
+### 5. ⏰ **Spaced Revision**
+Your personal memory trainer:
+- AI schedules revision using spaced repetition
+- Flashcard-style interface
+- Revision calendar + notifications
+
+### 6. 💡 **Application Vision**
+ENTER A CONCEPT → Instantly see:
+- 3 Real-world use cases
+- Mini-project ideas
+- Industry tools & jobs that use this concept
+- Optional: View as a Designer, Developer, Researcher, etc.
+
+---
+
+## ⚙️ Tech Stack
+
+| Layer         | Tech                                                     |
+|---------------|----------------------------------------------------------|
+| Frontend      | **Next.js (App Router)**, TypeScript, TailwindCSS        |
+| UI Generator  | **[v0.dev](https://v0.dev)** – React UI code generation  |
+| Styling       | TailwindCSS + Custom Gradients + Glassmorphism           |
+| AI Models     | **Gemini 1.5 Pro (via API)** / OpenAI GPT-4o (fallback)  |
+| Backend DB    | **Firebase Firestore** – for data storage & auth         |
+| Auth          | Firebase Auth + Google Sign-In                           |
+| Hosting       | **Vercel**                                               |
+| State/UX      | Zustand (optional), Dark Mode Toggle, Mobile-First       |
+
+---
+
+## 🧭 Project Structure (Simplified)
+
+```bash
+/edumorph
+├── app/                 # Next.js pages (App Router)
+│   ├── quiz/
+│   ├── roadmap/
+│   ├── concept-morph/
+│   └── spaced-revision/
+├── components/          # Reusable UI components
+├── lib/                 # API helpers (Gemini, Firebase)
+├── styles/              # Tailwind configs + global styles
+├── utils/               # Utility functions (formatting, prompts, etc.)
+├── public/              # Static assets
+└── firebase/            # Firebase config & auth hooks

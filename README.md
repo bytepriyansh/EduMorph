@@ -57,13 +57,11 @@ ENTER A CONCEPT → Instantly see:
 | Layer         | Tech                                                     |
 |---------------|----------------------------------------------------------|
 | Frontend      | **Next.js (App Router)**, TypeScript, TailwindCSS        |
-| UI Generator  | **[v0.dev](https://v0.dev)** – React UI code generation  |
 | Styling       | TailwindCSS + Custom Gradients + Glassmorphism           |
 | AI Models     | **Gemini 1.5 Pro (via API)** / OpenAI GPT-4o (fallback)  |
 | Backend DB    | **Firebase Firestore** – for data storage & auth         |
 | Auth          | Firebase Auth + Google Sign-In                           |
 | Hosting       | **Vercel**                                               |
-| State/UX      | Zustand (optional), Dark Mode Toggle, Mobile-First       |
 
 ---
 

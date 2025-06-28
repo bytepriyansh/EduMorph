@@ -6,7 +6,7 @@ EduMorph is a futuristic AI-powered education platform that redefines self-learn
 
 ## 🌐 Live Demo
 
-🔗 **[edu-morph.vercel.app](https://edu-morph.vercel.app)**  
+🔗 **[edu-morph.vercel.app](https://edumorphh.vercel.app/)**  
 
 ---
 

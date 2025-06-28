@@ -1,8 +1,5 @@
 # 🚀 EduMorph – The Shape-Shifting AI Learning Companion
 
-[![Deployed on Vercel](https://img.shields.io/badge/Deployed%20on-Vercel-black?style=for-the-badge&logo=vercel)](https://edu-morph.vercel.app)
-[![Built with v0.dev](https://img.shields.io/badge/Built%20with-v0.dev-black?style=for-the-badge)](https://v0.dev/chat/projects/jipnv3Kgop9)
-
 EduMorph is a futuristic AI-powered education platform that redefines self-learning with creativity, clarity, and cutting-edge experiences. Designed to help students **understand deeply**, **revise smartly**, and **apply concepts in the real world**, EduMorph adapts to each learner in real-time — no past data required.
 
 ---

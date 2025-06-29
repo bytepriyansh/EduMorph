@@ -45,7 +45,7 @@ interface PastDoubt {
 }
 
 export default function DoubtResolverPage() {
-  const { user } = useUser()
+  const { user, loading: userLoading } = useUser()
   const [messages, setMessages] = useState<Message[]>([])
   const [inputMessage, setInputMessage] = useState("")
   const [isTyping, setIsTyping] = useState(false)
@@ -58,8 +58,21 @@ export default function DoubtResolverPage() {
 
   // Load user's chat history
   useEffect(() => {
+    if (userLoading) return // Wait until user loading is complete
+
     const loadChatHistory = async () => {
-      if (!user?.uid) return
+      if (!user?.uid) {
+        // No user, set default state
+        const welcomeMessage: Message = {
+          id: Date.now().toString(),
+          content: "Hello! I'm your AI tutor. What would you like to learn about today?",
+          isUser: false,
+          timestamp: new Date(),
+        }
+        setMessages([welcomeMessage])
+        setIsLoading(false)
+        return
+      }
 
       setIsLoading(true)
       try {
@@ -68,8 +81,19 @@ export default function DoubtResolverPage() {
 
         if (userDoc.exists()) {
           const userData = userDoc.data()
-          setMessages(userData?.doubtHistory || [])
-          setPastDoubts(userData?.pastDoubts || [])
+          // Convert Firestore timestamps to Date objects
+          const loadedMessages = userData?.doubtHistory?.map((msg: any) => ({
+            ...msg,
+            timestamp: msg.timestamp?.toDate ? msg.timestamp.toDate() : new Date(msg.timestamp)
+          })) || []
+
+          const loadedDoubts = userData?.pastDoubts?.map((doubt: any) => ({
+            ...doubt,
+            timestamp: doubt.timestamp?.toDate ? doubt.timestamp.toDate() : new Date(doubt.timestamp)
+          })) || []
+
+          setMessages(loadedMessages)
+          setPastDoubts(loadedDoubts)
         } else {
           const welcomeMessage: Message = {
             id: Date.now().toString(),
@@ -83,22 +107,25 @@ export default function DoubtResolverPage() {
             createdAt: new Date(),
           })
           setMessages([welcomeMessage])
+          setPastDoubts([])
         }
       } catch (error) {
         console.error("Error loading chat history:", error)
+        // Set default state even if there's an error
         setMessages([{
           id: Date.now().toString(),
           content: "Hello! I'm your AI tutor. What would you like to learn about today?",
           isUser: false,
           timestamp: new Date(),
         }])
+        setPastDoubts([])
       } finally {
         setIsLoading(false)
       }
     }
 
     loadChatHistory()
-  }, [user?.uid])
+  }, [user?.uid, userLoading]) // Add userLoading to dependencies
 
   useEffect(() => {
     scrollToBottom()
@@ -150,12 +177,13 @@ export default function DoubtResolverPage() {
         resolved: true,
       }
 
+      const updatedDoubts = [...pastDoubts, newDoubt]
+      setPastDoubts(updatedDoubts)
+
       await updateDoc(doc(db, "users", user.uid), {
         doubtHistory: updatedMessages,
-        pastDoubts: [...pastDoubts, newDoubt],
+        pastDoubts: updatedDoubts,
       })
-
-      setPastDoubts(prev => [...prev, newDoubt])
     } catch (error) {
       console.error("Error generating response:", error)
       setMessages(prev => [...prev, {
@@ -168,6 +196,8 @@ export default function DoubtResolverPage() {
       setIsTyping(false)
     }
   }
+
+  // ... rest of your component code remains the same ...
 
   const handleRating = async (messageId: string, rating: "up" | "down") => {
     if (!user?.uid) return
@@ -376,14 +406,15 @@ export default function DoubtResolverPage() {
                 </ScrollArea>
               </CardContent>
 
-              {/* Input Area */}
               <div className="p-6 border-t border-slate-200 dark:border-slate-700">
                 <div className="flex gap-4">
                   <div className="flex-1 relative">
                     <Input
                       value={inputMessage}
                       onChange={(e) => setInputMessage(e.target.value)}
-                      onKeyPress={(e) => e.key === "Enter" && handleSendMessage()}
+                      onKeyDown={(e) => {
+                        if (e.key === "Enter") handleSendMessage();
+                      }}
                       placeholder={`Ask your ${activeSubject} question...`}
                       className="h-12 pr-12 rounded-2xl border-2 border-slate-200 dark:border-slate-700 bg-white/50 dark:bg-slate-800/50 backdrop-blur-sm focus:border-purple-500 dark:focus:border-purple-400 transition-all duration-300"
                     />

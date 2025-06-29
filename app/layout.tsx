@@ -12,7 +12,7 @@ export const metadata: Metadata = {
   title: "EduMorph",
   description: "Transform your learning journey with AI-powered education that adapts to your unique style and pace",
   icons: {
-    icon: "/ic.png",
+    icon: "/brain.webp",
   }
 }
 

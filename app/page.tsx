@@ -115,7 +115,6 @@ export default function LandingPage() {
           />
         ))}
         
-        {/* Animated Background Blobs */}
         <motion.div
           className="absolute -top-40 -right-40 w-80 h-80 bg-gradient-to-r from-indigo-400 to-purple-600 rounded-full mix-blend-multiply filter blur-xl opacity-20 dark:opacity-10"
           animate={{
@@ -261,7 +260,6 @@ export default function LandingPage() {
 
   
      
-      {/* CTA Section */}
       <section className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-r from-indigo-600 to-purple-600">
         <div className="max-w-4xl mx-auto text-center">
           <motion.div

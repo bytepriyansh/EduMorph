@@ -19,7 +19,6 @@ interface ApplicationVisionData {
   industries: string[];
 }
 
-// 3D Floating Icons Component
 const FloatingIcons = () => {
   const iconsRef = useRef<THREE.Group>(null);
 

@@ -9,24 +9,18 @@ import {
   ThumbsDown,
   Brain,
   Clock,
-  Archive,
-  Search,
-  Filter,
   Sparkles,
   Loader2,
-  ArrowDown,
 } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Avatar, AvatarFallback } from "@/components/ui/avatar"
-import { Badge } from "@/components/ui/badge"
 import { ScrollArea } from "@/components/ui/scroll-area"
 import { useUser } from "@/hooks/useUser"
 import { doc, getDoc, setDoc, updateDoc } from "firebase/firestore"
 import { db } from "@/lib/firebase"
 import { resolveDoubt } from "@/lib/gemini"
-import ReactMarkdown from 'react-markdown';
 
 interface Message {
   id: string
@@ -81,7 +75,6 @@ export default function DoubtResolverPage() {
 
         if (userDoc.exists()) {
           const userData = userDoc.data()
-          // Convert Firestore timestamps to Date objects
           const loadedMessages = userData?.doubtHistory?.map((msg: any) => ({
             ...msg,
             timestamp: msg.timestamp?.toDate ? msg.timestamp.toDate() : new Date(msg.timestamp)
@@ -111,7 +104,6 @@ export default function DoubtResolverPage() {
         }
       } catch (error) {
         console.error("Error loading chat history:", error)
-        // Set default state even if there's an error
         setMessages([{
           id: Date.now().toString(),
           content: "Hello! I'm your AI tutor. What would you like to learn about today?",
@@ -125,7 +117,7 @@ export default function DoubtResolverPage() {
     }
 
     loadChatHistory()
-  }, [user?.uid, userLoading]) // Add userLoading to dependencies
+  }, [user?.uid, userLoading])
 
   useEffect(() => {
     scrollToBottom()
@@ -197,7 +189,6 @@ export default function DoubtResolverPage() {
     }
   }
 
-  // ... rest of your component code remains the same ...
 
   const handleRating = async (messageId: string, rating: "up" | "down") => {
     if (!user?.uid) return
@@ -325,7 +316,7 @@ export default function DoubtResolverPage() {
                               </div>
 
                               <div
-                                className={`flex items-center gap-2 mt-2 ${message.isUser ? "justify-end" : "justify-start"
+                                className={`flex items-center gap-2 mt-5 ${message.isUser ? "justify-end" : "justify-start"
                                   }`}
                               >
                                 <span className="text-xs text-slate-500 flex items-center gap-1">
@@ -370,7 +361,6 @@ export default function DoubtResolverPage() {
                       </AnimatePresence>
                     )}
 
-                    {/* Typing Indicator */}
                     {isTyping && (
                       <motion.div
                         initial={{ opacity: 0, y: 20 }}
